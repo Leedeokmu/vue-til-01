@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <div>{{ num }}</div>
+    <app-header v-on:pass="logText"></app-header>
+    <app-content v-on:addnumber="addNumber"></app-content>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var appHeader = {
+        template: '<button v-on:click="passEvent">click me</button>',
+        methods: {
+            passEvent() {
+                this.$emit('pass');
+            }
+        }
+    };
+    var appContent = {
+        template: '<button v-on:click="addNumber">click me</button>',
+        methods: {
+            addNumber() {
+                this.$emit('addnumber');
+            }
+        }
+    };
+
+    new Vue({
+        el: '#app',
+        components: {
+            'app-header': appHeader,
+            'app-content': appContent,
+        },
+        methods: {
+            logText() {
+                console.log('hi');
+            },
+            addNumber() {
+                this.num++;
+            }
+        },
+        data: {
+            message: 'hi',
+            num: 10
+        }
+    })
+</script>
+</body>
+</html>
