@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <button v-on:click="addNum">increase</button>
+    {{ num }}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            num: 10
+        },
+        watch: {
+            num(newNum, oldNum) {
+                console.log(newNum);
+            }
+        },
+        methods: {
+            deliverNum(value) {
+                this.num = value;
+            },
+            logText() {
+                console.log('changed');
+            },
+            addNum() {
+                this.num++;
+            }
+        }
+    })
+</script>
+</body>
+</html>

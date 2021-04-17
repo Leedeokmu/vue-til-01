@@ -6,29 +6,35 @@
 </head>
 <body>
 <div id="app">
-<button v-on:click="getData">button</button>
-    {{ users }}
+    <p v-bind:id="uuid" v-bind:class="name">123</p>
+
+    <div v-if="loading">
+        Loading...
+    </div>
+    <div v-else>
+        tes user has been logged in
+    </div>
+    <input type="text" v-model="message">
+    <div>{{ message }}</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
+
     new Vue({
         el: '#app',
-        methods: {
-            getData() {
-                var vm = this;
-                axios.get('http://jsonplaceholder.typicode.com/users/')
-                    .then((response) => {
-                        vm.users = response.data;
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                    });
-            }
-        },
         data: {
-            users : []
+            loading: true,
+            message: 'hi',
+            num: 1,
+            uuid: 'uuid123',
+            name: 'className'
+        },
+        computed: {
+            doubleNum() {
+                return this.num * 2;
+            }
         }
+
     })
 </script>
 </body>
